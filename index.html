@@ -3,13 +3,32 @@
     <meta charset="utf-8">
     <title>Answer Guide</title>
     <meta name="description" content="Webpage">
-    
-    <link rel="stylesheet" href="">
+    <style>
+      html {
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+      }
+      .list-container {
+        width: 400px;
+        margin: auto;
+        border-top: 2px solid blue;
+        border-bottom: 2px solid blue;
+      }
+      li {
+        margin-bottom: 10px;
+        list-style-type: none;
+      }
+      li:last-child {
+        margin-bottom: 0px;
+      }
+    </style>
     
   </head>
   
   <body> 
-    <ul id="content"></ul>
+    <div class="list-container">
+      <ul id="content"></ul>
+    </div>
 
     <script src="solo_script.js"></script>
   </body>

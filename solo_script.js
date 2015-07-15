@@ -1,5 +1,8 @@
 // ! ! !
 // Three Bugs
+//The first error was in the first for loop, the index wasn't referenced and the entire array was passed in as a parameter
+//The second error was that the 3rd and 4th items in the employee's array weren't being rounded
+//The third error was that 1 was being subtracted from the base STI percentage
 
 var arrayAtticus = ["Atticus", "2405", "47000", 3];
 var arrayJem = ["Jem", "62347", "63500", 4];
@@ -16,11 +19,11 @@ position = document.getElementById('content');
 //Loop the array, extracting each array and writing information to the DOM
 //Note that the information is not 'clean'
 for(var i = 0; i < array.length; i++){
-	array[i] = calculateSTI(array);
- 	newEl = document.createElement('li');
-	newText = document.createTextNode(array[i]);
-	newEl.appendChild(newText);
-	position.appendChild(newEl);
+  array[i] = calculateSTI(array[i]); //FIRST ERROR, passed in the array instead of the element inside of the array
+  newEl = document.createElement('li');
+  newText = document.createTextNode(array[i].join("\t--\t")); //Make it pretty
+  newEl.appendChild(newText);
+  position.appendChild(newEl);
 }
 
 function calculateSTI(array){
@@ -38,8 +41,8 @@ function calculateSTI(array){
   }
 
   newArray[1] = bonus;
-  newArray[2] = baseSalary * (1.0 + bonus);
-  newArray[3] = baseSalary * bonus;
+  newArray[2] = Math.round(baseSalary * (1.0 + bonus)); //THIRD ERROR, didn't round the numbers 
+  newArray[3] = Math.round(baseSalary * bonus);
   console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
 }
@@ -63,7 +66,7 @@ function getBaseSTI(reviewScore){
       basePercent = 0.10;
       break;
   }
-  return basePercent - 1;
+  return basePercent; //SECOND ERROR, subtracted 1 from the base percentage so the values were negative.
 }
 
 function getYearAdjustment(employeeNumber){
